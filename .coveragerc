@@ -1,0 +1,11 @@
+[run]
+source = src
+concurrency = thread,greenlet
+
+[report]
+show_missing = True
+skip_covered = False
+precision = 2
+
+[html]
+directory = htmlcov
