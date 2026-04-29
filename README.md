@@ -92,3 +92,30 @@ GET /links/search/?original_url=http://example.com
 - Выполните миграцию с инициализацией БД по схеме проекта: `docker-compose exec web alembic upgrade head`
 
 Сервис готов к использованию 🎉
+
+## Тесты
+
+Установка зависимостей:
+
+```bash
+python3 -m pip install -r requirements.txt
+python3 -m pip install -r requirements-dev.txt
+```
+
+Запуск тестов и отчёт покрытия:
+
+```bash
+coverage run -m pytest tests
+coverage report
+coverage html   # HTML-отчёт в htmlcov/index.html
+```
+
+Текущее покрытие — **96.96%** (отчёт уже включён в репозиторий: `htmlcov/index.html`).
+
+Нагрузочное тестирование (Locust, при запущенном сервисе):
+
+```bash
+locust --headless -u 10 -r 2 -t 60s --host http://localhost:8000 -f locustfile.py --html locust_report.html
+```
+
+Образцовый отчёт прогона: `locust_report.html`.
